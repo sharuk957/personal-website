@@ -470,7 +470,7 @@ l̥		}
 			}
 			else{
 				e=false
-				valid="please enter invalid email"
+				valid="please enter valid email"
 			}
 			$('#check2').html(valid);
 		}
@@ -529,30 +529,31 @@ l̥		}
 		$('#message').keyup(function(){
 			checkmess();
 		})
-		$("#submit-form").submit((e)=>{
+        $("#submit-form").submit((e)=>{
             e.preventDefault()
-            if (n&&e&&nu&&m){
+            if(n&&m&&nu&&e){
             $.ajax({
-                	url:"https://script.google.com/macros/s/AKfycbyWeDQ7TlQ50njP5sZojkYldxt6xIjDdBBH6yAFpTSyyfccujm0yVWFsiVVSz6XP1ua/exec",
-                	data:$("#submit-form").serialize(),
-              		 method:"post",
+                url:"https://script.google.com/macros/s/AKfycbzChWeIEZlrrEeoBHAu--553vXutFHfhgOTqJ3ZC7NVcrJF1KMeDbiN2-C-rGQrudWkbQ/exec",
+                data:$("#submit-form").serialize(),
+                method:"post",
                 success:function (response){
                     alert("Form submitted successfully")
                     window.location.reload()
+                    //window.location.href="https://google.com"
                 },
                 error:function (err){
                     alert("Something Error")
     
                 }
             })
-            }
-			else{
-				checkname()
-				checkemail()
-				checknum()
-				checkmess()
-				alert("please fill the above fields")
-				}
+        }
+        else{
+        	checkmess()
+        	checknum()
+        	checkemail()
+        	checkname()
+        	alert("please will above field")
+        }
         })
 	</script>
 </body>
