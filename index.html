@@ -149,18 +149,35 @@ l̥		}
 		.size{
 			font-size:2.5rem;
 		}
+		.img{
+			width: 400px;
+		}
+		@media (max-width: 1000px){
+			.img{
+				width: 250px;
+				padding-top: 20px;
+			}
+		}
+		@media (max-width: 800px){
+			.img{
+				width: 200px;
+				padding-top: 50px;
+			}
+		}
 		@media (max-width: 600px) {
 			.flex-item-right, .flex-item-left {
 				flex: 100%;
 			}
-		@media (max-width: 350px) {
+		}
+		@media (max-width: 500px) {
 			.size{
-				font-size:1.8rem;
+				font-size:1.9rem;
 			}
-		/*@media (max-width: 400px) {
+		}
+		@media (max-width: 400px) {
 			.but{
 				font-size:9px;
-			}*/
+			}
 	</style>
 </head>
 <body>
@@ -197,8 +214,8 @@ l̥		}
 					<h1 class="size">MUHAMMED SHARUK</h1>
 					<a href="#services" class="btn but">VIEW MY WORK</a>
 				</div>
-				<div class="col d-none d-md-block">
-					<img src="dp.jpeg" class="img-fluid">
+				<div class="col ml-auto" style="text-align: center;">
+					<img src="dp.jpeg" class="img">
 				</div>
 			</div>
 		</div>
@@ -369,19 +386,19 @@ l̥		}
 			<div class="foot">
 				<form id="submit-form">
 					<div>
-						<input type="text" class="form-control a" id="name" placeholder="Name" name="name" onclick="checkname()" onkeyup="checkname()" autocomplete="off">
+						<input type="text" class="form-control a" id="name" placeholder="Name" name="name" autocomplete="off" oninput="this.value=this.value.replace(/[^A-Za-z-,.;'&/.() ]|^ /g,'')">
 					</div>
 					<p id="check1"></p>
 					<div class="form-group">
-						<input type="text" class="form-control a" id="email" placeholder="Email" name="email" onclick="checkemail()" onkeyup="checkemail()" autocomplete="off">
+						<input type="text" class="form-control a" id="email" placeholder="Email" name="email"  autocomplete="off" oninput="this.value=this.value.replace(/\s/g,'')">
 					</div>
 					<p id="check2"></p>
 					<div class="form-group">
-						<input type="tel" class="form-control a" id="number" placeholder="Phn.NO" name="number" onclick="checknumber()" onkeyup="checknumber()" autocomplete="off">
+						<input type="tel" class="form-control a" id="number" placeholder="Phn.NO" name="number"  autocomplete="off" oninput="this.value=this.value.replace(/\D/g,'')" maxlength="10">
 					</div>
 					<p id="check3"></p>
 					<div class="form-group">
-						<textarea class="form-control a" rows="5" id="message" placeholder="Message" name="message" onclick="checkmessage()" onkeyup="checkmessage()" autocomplete="off"></textarea>
+						<textarea class="form-control a" rows="5" id="message" placeholder="Message" name="message"  autocomplete="off"></textarea>
 					</div>
 					<p id="check4"></p>
 					<div class="form-group">
@@ -401,16 +418,13 @@ l̥		}
 				</div>
 				<div class="row f1">
 					<div class="col f2">
-						<a href=""><i class="fab fa-facebook" style="font-size: 50px; color: #6610f2"></i></a>
+						<a href="https://www.facebook.com/muhammed.sharuk" target="_blank"><i class="fab fa-facebook" style="font-size: 50px; color: #6610f2"></i></a>
 					</div>
 					<div class="col">
-						<a href=""><i class="fab fa-twitter" style="font-size: 50px; color: #6610f2"></i></a>
+						<a href="https://www.instagram.com/muhammedsharuk/?utm_medium=copy_link" target="_blank"><i class="fab fa-instagram" style="font-size: 50px; color: #6610f2"></i></a>
 					</div>
-					<div class="col">
-						<a href=""><i class="fab fa-linkedin-in"style="font-size: 50px; color: #6610f2"></i></a>
-					</div>
-					<div class="col">
-						<a href=""><i class="fab fa-youtube" style="font-size: 50px; color: #6610f2"></i></a>
+					<div class="col">	
+						<a href="https://www.linkedin.com/in/muhammed-sharuk-p-m-9756391b9" target="_blank"><i class="fab fa-linkedin-in"style="font-size: 50px; color: #6610f2"></i></a>
 					</div>
 				</div>
 			</div>
@@ -422,25 +436,32 @@ l̥		}
 		var nu=false
 		var m=false
 		function checkname(){
-			var name=document.getElementById("name").value
-			var valid
+			var name=$('#name').val();
+			var valid;
 			var pattern=/^[a-zA-Z-()]+(\s+[-a-zA-Z-()]+)*$/;
 			if (name=="") {
-				valid="required"
-				n=false
+				valid="name is required";
+				n=false;
+			}
+			else if(name.match(pattern)&&name.length<=2){
+				valid="please enter atleast 3 letter";
 			}
 			else if(name.match(pattern)){
-				valid=""
-				n=true
+				valid="";
+				n=true;
+			}
+			else if(name.endsWith(" ")){
+				valid="do not enter space as last character"
+				n=false
 			}
 			else{
-				n=false
-				valid="characters only"
+				n=false;
+				valid="characters only";
 			}
-			document.getElementById("check1").innerHTML=valid
+			$('#check1').html(valid);
 		}
 		function checkemail(){
-			var mail=document.getElementById("email").value
+			var mail=$('#email').val();
 			var valid
 			var pattern=/^[^]+@[^]+\.[a-z]{2,3}$/
 			if (mail=="") {
@@ -453,76 +474,86 @@ l̥		}
 			}
 			else{
 				e=false
-				valid="invalid format"
+				valid="please enter valid email"
 			}
-			document.getElementById("check2").innerHTML=valid
+			$('#check2').html(valid);
 		}
-		function checknumber(){
-			var num=document.getElementById("number").value
+		function checknum(){
+			var num=$('#number').val();
 			var valid
-			var pattern=/^\d{10}$/
+			var pattern=/^[0-9]*$/
 			if(num==""){
 				valid="required"
 				nu=false
+			}
+			else if (num.match(pattern) && num.length<10) {
+				valid="please enter 10 digit number"
+				nu=true
 			}
 			else if (num.match(pattern)) {
 				valid=""
 				nu=true
 			}
 			else{
-				valid="invalid format"
+				valid="please enter numbers only"
 				nu=false
 			}
-			document.getElementById("check3").innerHTML=valid
+			$('#check3').html(valid);
 		}
-		function checkmessage(){
-			var msg=document.getElementById("message").value
+		function checkmess(){
+			var msg=$('#message').val();
 			var valid
 			if(msg==""){
 				valid="required"
 				m=false
 			}
-			else if (msg.length<20) {
-				valid="atleast 20 characters"
+			else if (msg.length<10) {
+				valid="atleast 10 characters"
 				m=false
 			}
 			else{
 				valid=""
 				m=true
 			}
-			document.getElementById("check4").innerHTML=valid
+			$('#check4').html(valid);
 		}
-		function erordisplay(i){
-			if(i==1){
-			document.getElementById("remo").innerHTML="please fill the above field"
-		}
-		else{
-			document.getElementById("remo").innerHTML=""
-		}
-		}
-		$("#submit-form").submit((e)=>{
+		$('#name').keyup(function(){
+			checkname();
+		});
+		$('#email').keyup(function(){
+			checkemail();
+		});
+		$('#number').keyup(function(){
+			checknum();
+		})
+		$('#message').keyup(function(){
+			checkmess();
+		})
+        $("#submit-form").submit((e)=>{
             e.preventDefault()
-            if (n&&e&&nu&&m){
-            	erordisplay(0)
+            if(n&&m&&nu&&e){
             $.ajax({
-                	url:"https://script.google.com/macros/s/AKfycbyWeDQ7TlQ50njP5sZojkYldxt6xIjDdBBH6yAFpTSyyfccujm0yVWFsiVVSz6XP1ua/exec",
-                	data:$("#submit-form").serialize(),
-              		 method:"post",
+                url:"https://script.google.com/macros/s/AKfycbzChWeIEZlrrEeoBHAu--553vXutFHfhgOTqJ3ZC7NVcrJF1KMeDbiN2-C-rGQrudWkbQ/exec",
+                data:$("#submit-form").serialize(),
+                method:"post",
                 success:function (response){
                     alert("Form submitted successfully")
                     window.location.reload()
+                    //window.location.href="https://google.com"
                 },
                 error:function (err){
                     alert("Something Error")
     
                 }
             })
-            }
-			else{
-				erordisplay(1)
-				}
+        }
+        else{
+        	checkmess()
+        	checknum()
+        	checkemail()
+        	checkname()
+        }
         })
-
 	</script>
 </body>
 </html>
