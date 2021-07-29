@@ -385,8 +385,7 @@ l̥		}
 			</div>
 			<div class="foot">
 				<form id="submit-form">
-					<div>
-<<<<<<< HEAD
+					<div class="form-group">
 						<input type="text" class="form-control a" id="name" placeholder="Name" name="name" autocomplete="off" oninput="this.value=this.value.replace(/[^A-Za-z-,.;'&/.() ]|^ /g,'')">
 					</div>
 					<p id="check1"></p>
@@ -396,17 +395,6 @@ l̥		}
 					<p id="check2"></p>
 					<div class="form-group">
 						<input type="tel" class="form-control a" id="number" placeholder="Phn.NO" name="number"  autocomplete="off" oninput="this.value=this.value.replace(/\D/g,'')" maxlength="10">
-=======
-						<input type="text" class="form-control a" id="name" placeholder="Name" name="name" autocomplete="off">
-					</div>
-					<p id="check1"></p>
-					<div class="form-group">
-						<input type="text" class="form-control a" id="email" placeholder="Email" name="email"  autocomplete="off">
-					</div>
-					<p id="check2"></p>
-					<div class="form-group">
-						<input type="tel" class="form-control a" id="number" placeholder="Phn.NO" name="number"  autocomplete="off">
->>>>>>> 91f793a7e319bff55c79701a040b4899a8dd3ce7
 					</div>
 					<p id="check3"></p>
 					<div class="form-group">
@@ -415,7 +403,7 @@ l̥		}
 					<p id="check4"></p>
 					<div class="form-group">
 						<input class="but" type="submit" name="send" value="Send Message">
-						<p id="remo"></sp>
+						<p id="remo"></p>
 					</div>
 				</form>
 			</div>
@@ -462,7 +450,6 @@ l̥		}
 				valid="";
 				n=true;
 			}
-<<<<<<< HEAD
 			else if(name.endsWith(" ")){
 				valid="do not enter space as last character"
 				n=false
@@ -471,12 +458,6 @@ l̥		}
 				n=false;
 				valid="characters only";
 			}
-=======
-			else{
-				n=false;
-				valid="characters only";
-			}
->>>>>>> 91f793a7e319bff55c79701a040b4899a8dd3ce7
 			$('#check1').html(valid);
 		}
 		function checkemail(){
@@ -509,13 +490,10 @@ l̥		}
 				valid="please enter 10 digit number"
 				nu=true
 			}
-<<<<<<< HEAD
-=======
 			else if (num.match(pattern) && num.length>10) {
 				valid="phone number is exeed 10 digit"
 				nu=true
 			}
->>>>>>> 91f793a7e319bff55c79701a040b4899a8dd3ce7
 			else if (num.match(pattern)) {
 				valid=""
 				nu=true
@@ -551,10 +529,11 @@ l̥		}
 		});
 		$('#number').keyup(function(){
 			checknum();
-		})
+		});
 		$('#message').keyup(function(){
 			checkmess();
-		})
+		});
+
         $("#submit-form").submit((e)=>{
             e.preventDefault()
             if(n&&m&&nu&&e){
@@ -578,10 +557,6 @@ l̥		}
         	checknum()
         	checkemail()
         	checkname()
-<<<<<<< HEAD
-=======
-        	alert("please will above field")
->>>>>>> 91f793a7e319bff55c79701a040b4899a8dd3ce7
         }
         })
 	</script>
